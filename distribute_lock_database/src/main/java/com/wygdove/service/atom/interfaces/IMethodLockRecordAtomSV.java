@@ -3,9 +3,9 @@ package com.wygdove.service.atom.interfaces;
 import com.wygdove.dao.bo.MethodLockRecord;
 
 /**
- * @Title: MethodLockRecordAtomSV
+ * @Title: IMethodLockRecordAtomSV
  * @Description:
  */
-public interface MethodLockRecordAtomSV {
+public interface IMethodLockRecordAtomSV {
     public int addMethodLockRecord(MethodLockRecord methodLockRecord);
 }
