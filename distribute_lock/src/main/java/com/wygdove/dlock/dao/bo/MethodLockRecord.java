@@ -1,4 +1,4 @@
-package com.wygdove.dao.bo;
+package com.wygdove.dlock.dao.bo;
 
 import java.sql.Timestamp;
 

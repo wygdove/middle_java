@@ -1,8 +1,8 @@
-package com.wygdove.controller;
+package com.wygdove.dlock.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.wygdove.dao.bo.MethodLockRecord;
-import com.wygdove.service.atom.interfaces.IMethodLockRecordAtomSV;
+import com.wygdove.dlock.dao.bo.MethodLockRecord;
+import com.wygdove.dlock.service.atom.interfaces.IMethodLockRecordAtomSV;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

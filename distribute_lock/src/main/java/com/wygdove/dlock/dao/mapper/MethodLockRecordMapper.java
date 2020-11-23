@@ -1,7 +1,7 @@
-package com.wygdove.dao.mapper;
+package com.wygdove.dlock.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wygdove.dao.bo.MethodLockRecord;
+import com.wygdove.dlock.dao.bo.MethodLockRecord;
 
 /**
  * @Title: MethodLockRecordMapper

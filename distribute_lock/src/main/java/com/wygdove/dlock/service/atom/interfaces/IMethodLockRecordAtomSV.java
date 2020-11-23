@@ -1,6 +1,6 @@
-package com.wygdove.service.atom.interfaces;
+package com.wygdove.dlock.service.atom.interfaces;
 
-import com.wygdove.dao.bo.MethodLockRecord;
+import com.wygdove.dlock.dao.bo.MethodLockRecord;
 import java.util.List;
 
 /**

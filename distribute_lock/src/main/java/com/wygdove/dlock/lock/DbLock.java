@@ -1,8 +1,8 @@
-package com.wygdove.lock;
+package com.wygdove.dlock.lock;
 
-import com.wygdove.constants.CommonConstants;
-import com.wygdove.dao.bo.MethodLockRecord;
-import com.wygdove.service.atom.interfaces.IMethodLockRecordAtomSV;
+import com.wygdove.dlock.constants.CommonConstants;
+import com.wygdove.dlock.dao.bo.MethodLockRecord;
+import com.wygdove.dlock.service.atom.interfaces.IMethodLockRecordAtomSV;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

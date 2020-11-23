@@ -1,4 +1,4 @@
-package com.wygdove.config;
+package com.wygdove.dlock.config;
 
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import javax.sql.DataSource;
@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
  * @Description:
  */
 @Configuration
-@MapperScan(basePackages="com.wygdove.dao.mapper",sqlSessionTemplateRef="sqlSessionTemplate")
+@MapperScan(basePackages="com.wygdove.dlock.dao.mapper",sqlSessionTemplateRef="sqlSessionTemplate")
 public class DataSourceConfig {
 
     @Bean(name="sqlSessionFactory")

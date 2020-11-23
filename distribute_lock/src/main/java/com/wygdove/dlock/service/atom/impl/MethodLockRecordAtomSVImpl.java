@@ -1,9 +1,9 @@
-package com.wygdove.service.atom.impl;
+package com.wygdove.dlock.service.atom.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wygdove.dao.bo.MethodLockRecord;
-import com.wygdove.dao.mapper.MethodLockRecordMapper;
-import com.wygdove.service.atom.interfaces.IMethodLockRecordAtomSV;
+import com.wygdove.dlock.dao.bo.MethodLockRecord;
+import com.wygdove.dlock.dao.mapper.MethodLockRecordMapper;
+import com.wygdove.dlock.service.atom.interfaces.IMethodLockRecordAtomSV;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Component;

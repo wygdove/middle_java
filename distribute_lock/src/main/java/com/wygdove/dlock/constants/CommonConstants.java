@@ -1,4 +1,4 @@
-package com.wygdove.constants;
+package com.wygdove.dlock.constants;
 
 /**
  * @Title: CommonConstants
