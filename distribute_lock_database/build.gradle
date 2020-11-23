@@ -1,22 +1,35 @@
 plugins {
-    id 'java'
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'war'
 }
 
-group 'com.wygdove'
-version '1.0-SNAPSHOT'
+group='com.wygdove'
+version='1.0-SNAPSHOT'
+sourceCompatibility='1.8'
 
-sourceCompatibility = 1.8
+
 
 repositories {
-    mavenCentral()
+	maven {url "http://10.1.228.199:18081/nexus/content/groups/public/"}
 }
 
 dependencies {
+    compile files('lib/ojdbc7-12.1.0.2.0.jar')
 
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+	
+	
+	compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
+	compile 'com.alibaba:fastjson:1.2.75'
 
-    compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
-    compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
+}
 
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+test {
+	useJUnitPlatform()
 }
