@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Title: MethodLockRecordControlller
+ * @Title: MethodLockRecordController
  * @Description:
  */
 @RestController
 @RequestMapping("methodlockrecord")
-public class MethodLockRecordControlller {
-    private static final Logger log=LoggerFactory.getLogger(MethodLockRecordControlller.class);
+public class MethodLockRecordController {
+    private static final Logger log=LoggerFactory.getLogger(MethodLockRecordController.class);
 
     @Resource
     private IMethodLockRecordAtomSV methodLockRecordAtomSV;
