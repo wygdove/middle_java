@@ -16,15 +16,13 @@ repositories {
 }
 
 dependencies {
-    compile files('lib/ojdbc7-12.1.0.2.0.jar')
-
 	implementation 'org.springframework.boot:spring-boot-starter-batch'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.batch:spring-batch-test'
 	
-	
+	compile 'com.oracle.jdbc:ojdbc7:12.1.0.2'
 	compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
 	compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5'
 	compile 'com.alibaba:fastjson:1.2.75'
