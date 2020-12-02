@@ -1,5 +1,6 @@
 package com.wygdove.dlock.service.busi.interfaces;
 
+import com.github.pagehelper.PageInfo;
 import com.wygdove.dlock.model.assetsstock.AssetsStockQueryRequest;
 import com.wygdove.dlock.model.assetsstock.AssetsStockSaveRequest;
 import com.wygdove.dlock.model.assetsstock.AssetsStockVO;
@@ -20,6 +21,8 @@ public interface IAssetsStockBusiSV {
     public AssetsStockVO queryDetailAssetsStock(AssetsStockQueryRequest request);
 
     public List<AssetsStockVO> queryListAssetsStock(AssetsStockQueryRequest request);
+
+    public PageInfo<AssetsStockVO> queryPageAssetsStock(AssetsStockQueryRequest request);
 
     public Integer countAssetsStock(AssetsStockQueryRequest request);
     

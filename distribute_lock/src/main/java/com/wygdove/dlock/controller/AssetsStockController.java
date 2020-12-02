@@ -1,6 +1,7 @@
 package com.wygdove.dlock.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
 import com.wygdove.dlock.model.assetsstock.AssetsStockQueryRequest;
 import com.wygdove.dlock.model.assetsstock.AssetsStockSaveRequest;
 import com.wygdove.dlock.model.assetsstock.AssetsStockVO;
@@ -72,15 +73,15 @@ public class AssetsStockController {
     }
 
 
-    @RequestMapping("queryAssetsStockDetail")
-    public AjaxResult queryAssetsStockDetail(HttpServletRequest request,AssetsStockQueryRequest queryRequest) {
-        log.info("controller:/assetsstock/queryAssetsStockDetail");
+    @RequestMapping("queryDetailAssetsStock")
+    public AjaxResult queryDetailAssetsStock(HttpServletRequest request,AssetsStockQueryRequest queryRequest) {
+        log.info("controller:/assetsstock/queryDetailAssetsStock");
         if(log.isInfoEnabled()) {
-            log.info("/assetsstock/queryAssetsStockDetail queryRequest: {}",JSON.toJSONString(queryRequest));
+            log.info("/assetsstock/queryDetailAssetsStock queryRequest: {}",JSON.toJSONString(queryRequest));
         }
         AssetsStockVO response=assetsStockBusiSV.queryDetailAssetsStock(queryRequest);
         if(log.isInfoEnabled()) {
-            log.info("/assetsstock/queryAssetsStockDetail response: {}",JSON.toJSONString(response));
+            log.info("/assetsstock/queryDetailAssetsStock response: {}",JSON.toJSONString(response));
         }
         if(response!=null) {
             return AjaxUtil.markSuccess(response);
@@ -88,15 +89,31 @@ public class AssetsStockController {
         return AjaxUtil.markError();
     }
 
-    @RequestMapping("queryAssetsStockList")
-    public AjaxResult queryAssetsStockList(HttpServletRequest request,AssetsStockQueryRequest queryRequest) {
-        log.info("controller:/assetsstock/queryAssetsStockList");
+    @RequestMapping("queryListAssetsStock")
+    public AjaxResult queryListAssetsStock(HttpServletRequest request,AssetsStockQueryRequest queryRequest) {
+        log.info("controller:/assetsstock/queryListAssetsStock");
         if(log.isInfoEnabled()) {
-            log.info("/assetsstock/queryAssetsStockList queryRequest: {}",JSON.toJSONString(queryRequest));
+            log.info("/assetsstock/queryListAssetsStock queryRequest: {}",JSON.toJSONString(queryRequest));
         }
         List<AssetsStockVO> response=assetsStockBusiSV.queryListAssetsStock(queryRequest);
         if(log.isInfoEnabled()) {
-            log.info("/assetsstock/queryAssetsStockList response: {}",JSON.toJSONString(response));
+            log.info("/assetsstock/queryListAssetsStock response: {}",JSON.toJSONString(response));
+        }
+        if(response!=null) {
+            return AjaxUtil.markSuccess(response);
+        }
+        return AjaxUtil.markError();
+    }
+
+    @RequestMapping("queryPageAssetsStock")
+    public AjaxResult queryPageAssetsStock(HttpServletRequest request,AssetsStockQueryRequest queryRequest) {
+        log.info("controller:/assetsstock/queryPageAssetsStock");
+        if(log.isInfoEnabled()) {
+            log.info("/assetsstock/queryPageAssetsStock queryRequest: {}",JSON.toJSONString(queryRequest));
+        }
+        PageInfo<AssetsStockVO> response=assetsStockBusiSV.queryPageAssetsStock(queryRequest);
+        if(log.isInfoEnabled()) {
+            log.info("/assetsstock/queryPageAssetsStock response: {}",JSON.toJSONString(response));
         }
         if(response!=null) {
             return AjaxUtil.markSuccess(response);

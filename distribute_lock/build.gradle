@@ -26,6 +26,7 @@ dependencies {
 	
 	
 	compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
+	compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5'
 	compile 'com.alibaba:fastjson:1.2.75'
 
 }

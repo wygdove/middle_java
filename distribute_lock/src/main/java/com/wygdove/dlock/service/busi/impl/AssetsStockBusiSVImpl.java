@@ -1,6 +1,9 @@
 package com.wygdove.dlock.service.busi.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wygdove.dlock.constants.CommonConstants;
 import com.wygdove.dlock.constants.SequencesConstant;
 import com.wygdove.dlock.dao.bo.AssetsStock;
@@ -124,6 +127,40 @@ public class AssetsStockBusiSVImpl implements IAssetsStockBusiSV {
         }
         if(log.isDebugEnabled()) log.debug("AssetsStockBusiSVImpl.queryListAssetsStock result: {}",JSON.toJSONString(result));
         return result;
+    }
+
+    @Override
+    public PageInfo<AssetsStockVO> queryPageAssetsStock(AssetsStockQueryRequest request) {
+        if(log.isDebugEnabled()) log.debug("AssetsStockBusiSVImpl.queryPageAssetsStock request: {}",JSON.toJSONString(request));
+        PageInfo<AssetsStockVO> pageResult=new PageInfo<>();
+        List<AssetsStockVO> result=new ArrayList<>();
+
+        AssetsStock queryRequest=new AssetsStock();
+        BeanUtils.copyProperties(request,queryRequest);
+        Map<String,Object> reqmap=this.setAtomQueryMap(request);
+
+        List<AssetsStock> resList;
+        Page<AssetsStock> pageData;
+        PageHelper.startPage(request.getPageNo(),request.getPageSize());
+        try {
+            resList=assetsStockAtomSV.queryList(queryRequest,reqmap);
+            pageData=(Page<AssetsStock>)resList;
+        }finally {
+            PageHelper.clearPage();
+        }
+        if(!CollectionUtils.isEmpty(resList)) {
+            AssetsStockVO itemVo=null;
+            for(AssetsStock item:resList) {
+                itemVo=new AssetsStockVO();
+                BeanUtils.copyProperties(item,itemVo);
+                result.add(itemVo);
+            }
+            BeanUtils.copyProperties(pageData,pageResult);
+        }
+        pageResult.setList(result);
+
+        if(log.isDebugEnabled()) log.debug("AssetsStockBusiSVImpl.queryPageAssetsStock result: {}",JSON.toJSONString(result));
+        return pageResult;
     }
 
     @Override
