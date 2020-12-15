@@ -1,0 +1,34 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group='com.wygdove'
+version='1.0-SNAPSHOT'
+sourceCompatibility='1.8'
+
+
+
+repositories {
+	maven {url "http://10.1.228.199:18081/nexus/content/groups/public/"}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+	
+	compile 'com.oracle.jdbc:ojdbc7:12.1.0.2'
+	compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
+	compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5'
+	compile 'com.alibaba:fastjson:1.2.75'
+
+}
+
+test {
+	useJUnitPlatform()
+}
