@@ -10,6 +10,7 @@ import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridSaveRequest;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridVO;
 import com.wygdove.multiprovince.service.atom.interfaces.IDimAreaGridAtomSV;
 import com.wygdove.multiprovince.service.busi.interfaces.IDimAreaGridBusiSV;
+import com.wygdove.multiprovince.service.cmpt.interfaces.IDimAreaGridQueryCmpt;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,8 @@ public class DimAreaGridBusiSVImpl implements IDimAreaGridBusiSV {
 
     @Resource
     private IDimAreaGridAtomSV dimAreaGridAtomSV;
+    @Resource
+    private IDimAreaGridQueryCmpt dimAreaGridQueryCmpt;
 
 
     @Transactional
@@ -103,10 +106,15 @@ public class DimAreaGridBusiSVImpl implements IDimAreaGridBusiSV {
         return result;
     }
 
+
+
     @Override
     public List<DimAreaGridVO> queryListDimAreaGrid(DimAreaGridQueryRequest request) {
         if(log.isDebugEnabled()) log.debug("DimAreaGridBusiSVImpl.queryListDimAreaGrid request: {}",JSON.toJSONString(request));
         List<DimAreaGridVO> result=new ArrayList<>();
+
+        request=dimAreaGridQueryCmpt.getRequestByType(request);
+
         DimAreaGrid queryRequest=new DimAreaGrid();
         BeanUtils.copyProperties(request,queryRequest);
         Map<String,Object> reqmap=this.setAtomQueryMap(request);
@@ -122,6 +130,8 @@ public class DimAreaGridBusiSVImpl implements IDimAreaGridBusiSV {
         if(log.isDebugEnabled()) log.debug("DimAreaGridBusiSVImpl.queryListDimAreaGrid result: {}",JSON.toJSONString(result));
         return result;
     }
+
+
 
     @Override
     public PageInfo<DimAreaGridVO> queryPageDimAreaGrid(DimAreaGridQueryRequest request) {
