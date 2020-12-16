@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -30,6 +31,7 @@ import org.springframework.util.StringUtils;
  * @Description:
  */
 @Service
+@ConditionalOnMissingBean(value=IGsopSysParamBusiSV.class,ignored=GsopSysParamBusiSVImpl.class)
 public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     private static Logger log=LoggerFactory.getLogger(GsopSysParamBusiSVImpl.class);
 

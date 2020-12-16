@@ -7,6 +7,9 @@ import com.wygdove.multiprovince.service.atom.interfaces.IGsopSysParamAtomSV;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -15,18 +18,22 @@ import org.springframework.util.StringUtils;
  * @Description:
  */
 @Repository
+@ConditionalOnMissingBean(value=IGsopSysParamAtomSV.class,ignored=GsopSysParamAtomSVImpl.class)
 public class GsopSysParamAtomSVImpl implements IGsopSysParamAtomSV {
+    private static Logger log=LoggerFactory.getLogger(GsopSysParamAtomSVImpl.class);
     
     @Resource
     private GsopGridSysParamMapper gsopGridSysParamMapper;
 
     @Override
     public int add(GsopGridSysParam request) {
+        log.debug("GsopSysParamAtomSVImpl.add");
         return gsopGridSysParamMapper.insert(request);
     }
 
     @Override
     public int update(GsopGridSysParam request) {
+        log.debug("GsopSysParamAtomSVImpl.update");
         QueryWrapper<GsopGridSysParam> updateWrapper=new QueryWrapper<>();
         updateWrapper.lambda().eq(GsopGridSysParam::getGuidkey,request.getGuidkey());
         return gsopGridSysParamMapper.update(request,updateWrapper);
@@ -34,27 +41,32 @@ public class GsopSysParamAtomSVImpl implements IGsopSysParamAtomSV {
 
     @Override
     public GsopGridSysParam queryById(GsopGridSysParam request) {
+        log.debug("GsopSysParamAtomSVImpl.queryById");
         return gsopGridSysParamMapper.selectById(request.getGuidkey());
     }
 
     @Override
     public List<GsopGridSysParam> queryList(GsopGridSysParam request) {
+        log.debug("GsopSysParamAtomSVImpl.queryList");
         return this.queryList(request,null);
     }
 
     @Override
     public List<GsopGridSysParam> queryList(GsopGridSysParam request,Map<String,Object> reqmap) {
+        log.debug("GsopSysParamAtomSVImpl.queryList");
         QueryWrapper<GsopGridSysParam> queryWrapper=this.getQueryWrapper(request,reqmap);
         return gsopGridSysParamMapper.selectList(queryWrapper);
     }
 
     @Override
     public int count(GsopGridSysParam request) {
+        log.debug("GsopSysParamAtomSVImpl.count");
         return this.count(request,null);
     }
 
     @Override
     public int count(GsopGridSysParam request,Map<String,Object> reqmap) {
+        log.debug("GsopSysParamAtomSVImpl.count");
         QueryWrapper<GsopGridSysParam> queryWrapper=this.getQueryWrapper(request,reqmap);
         return gsopGridSysParamMapper.selectCount(queryWrapper);
     }

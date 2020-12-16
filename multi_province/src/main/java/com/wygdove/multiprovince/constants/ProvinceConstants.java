@@ -12,7 +12,7 @@ public class ProvinceConstants {
 
     public static final String BEIJING="beijing";
 
-    public static final String TIANJIN="tianjin";
+    public static final String XINJIANG="xinjiang";
 
 
 }

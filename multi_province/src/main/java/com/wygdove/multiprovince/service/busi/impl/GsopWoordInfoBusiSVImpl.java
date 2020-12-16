@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wygdove.multiprovince.constants.CommonConstants;
 import com.wygdove.multiprovince.dao.bo.GsopWoOrdInfo;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoQueryRequest;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoSaveRequest;
@@ -20,16 +19,17 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * @Title: GsopWoordInfoBusiSVImpl
  * @Description:
  */
 @Service
+@ConditionalOnMissingBean(value=IGsopWoordInfoBusiSV.class,ignored=GsopWoordInfoBusiSVImpl.class)
 public class GsopWoordInfoBusiSVImpl implements IGsopWoordInfoBusiSV {
     private static Logger log=LoggerFactory.getLogger(GsopWoordInfoBusiSVImpl.class);
 
