@@ -2,6 +2,7 @@ package com.wygdove.multiprovince.controller.dimareagrid.xinjiang;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
+import com.wygdove.multiprovince.constants.ProvinceConstants;
 import com.wygdove.multiprovince.model.common.AjaxResult;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridQueryRequest;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridSaveRequest;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  */
 @RestController
+@ConditionalOnProperty(name=ProvinceConstants.PROVINCE,havingValue=ProvinceConstants.XINJIANG)
 @RequestMapping("dimareagrid/xinjiang")
 public class DimAreaGridXinjiangController {
     private static final Logger log=LoggerFactory.getLogger(DimAreaGridXinjiangController.class);
