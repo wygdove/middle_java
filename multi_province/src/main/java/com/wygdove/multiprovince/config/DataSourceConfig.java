@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.support.DefaultBeanNameGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,13 +21,11 @@ import org.springframework.util.StringUtils;
 public class DataSourceConfig {
     private static Logger log=LoggerFactory.getLogger(DataSourceConfig.class);
 
-    @Value("${province}")
-    private String province;
-
 
     @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer(){
-        log.debug("DataSourceConfig.mapperScannerConfigurer province :{}",province);
+    public MapperScannerConfigurer mapperScannerConfigurer(ProvinceConfigAware provinceConfigAware){
+        String province=provinceConfigAware.getProvince();
+        log.debug("DataSourceConfig.mapperScannerConfigurer province: {}",province);
 
         MapperScannerConfigurer scannerConfigurer=new MapperScannerConfigurer();
         final String BASE_PACKAGE_PREFIX="com.wygdove.multiprovince.dao.mapper.";
