@@ -6,6 +6,7 @@ import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoQueryRequest;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoSaveRequest;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoVO;
 import com.wygdove.multiprovince.service.atom.interfaces.IGsopWoordInfoAtomSV;
+import com.wygdove.multiprovince.service.atom.interfaces.IGsopWorkerOrderAtomSV;
 import com.wygdove.multiprovince.service.busi.interfaces.IGsopWoordInfoBusiSV;
 import java.util.List;
 import javax.annotation.Resource;
@@ -27,6 +28,8 @@ public class GsopWoordInfoBusiSVImpl implements IGsopWoordInfoBusiSV {
 
     @Resource
     private IGsopWoordInfoAtomSV gsopWoordInfoAtomSV;
+    @Resource
+    private IGsopWorkerOrderAtomSV gsopWorkerOrderAtomSV;
 
 
     @Transactional
@@ -85,7 +88,7 @@ public class GsopWoordInfoBusiSVImpl implements IGsopWoordInfoBusiSV {
     @Override
     public List<GsopWoordInfoVO> queryListGsopWoordInfo(GsopWoordInfoQueryRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopWoordInfoBusiSVImpl.queryListGsopWoordInfo request: {}",JSON.toJSONString(request));
-        List<GsopWoordInfoVO> result=gsopWoordInfoAtomSV.queryList(request);
+        List<GsopWoordInfoVO> result=gsopWorkerOrderAtomSV.getWoordListByType(request);
         if(log.isDebugEnabled()) log.debug("GsopWoordInfoBusiSVImpl.queryListGsopWoordInfo result: {}",JSON.toJSONString(result));
         return result;
     }

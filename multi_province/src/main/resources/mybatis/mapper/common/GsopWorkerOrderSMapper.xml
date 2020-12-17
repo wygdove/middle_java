@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wygdove.multiprovince.dao.mapper.common.GsopWorkerOrderSMapper">
+
+    <select id="getWoordListByType"
+            parameterType="com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoQueryRequest"
+            resultType="com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoVO">
+        select
+          wo_id as woId,
+          wo_code as woCode,
+          wo_title as woTitle,
+          wo_big_type as woBigType,
+          wo_type as woType
+        from gsop_wo_ord_info gwoi
+        where 1=1
+        <if test="woType!=null and woType!='' ">
+            and gwoi.wo_type=#{woType}
+        </if>
+    </select>
+
+
+</mapper>

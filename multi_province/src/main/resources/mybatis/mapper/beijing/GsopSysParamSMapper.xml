@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wygdove.multiprovince.dao.mapper.beijing.GsopSysParamSMapper">
+
+    <resultMap id="BaseResultMap" type="com.wygdove.multiprovince.model.gsopsysparam.GsopSysParamVO">
+        <id column="GUIDKEY" jdbcType="VARCHAR" property="guidkey" />
+        <result column="TYPE_CODE" jdbcType="VARCHAR" property="typeCode" />
+        <result column="PARAM_CODE" jdbcType="VARCHAR" property="paramCode" />
+        <result column="COLUMN_VALUE" jdbcType="VARCHAR" property="columnValue" />
+        <result column="COLUMN_DESC" jdbcType="VARCHAR" property="columnDesc" />
+        <result column="SUB_PARAM_CODE" jdbcType="VARCHAR" property="subParamCode" />
+        <result column="DISPORD" jdbcType="DECIMAL" property="dispord" />
+        <result column="DESCB" jdbcType="VARCHAR" property="descb" />
+        <result column="STATE" jdbcType="VARCHAR" property="state" />
+    </resultMap>
+
+    <select id="getSysParamList"
+            parameterType="com.wygdove.multiprovince.model.gsopsysparam.GsopSysParamQueryRequest"
+            resultMap="BaseResultMap">
+        select guidkey, type_code, param_code, sub_param_code, column_value, column_desc, dispord, descb, state
+        from gsop_grid_sys_param
+        where 1=1
+        <if test="paramCode!=null and paramCode!='' ">
+            and param_code=#{paramCode}
+        </if>
+    </select>
+
+
+</mapper>
