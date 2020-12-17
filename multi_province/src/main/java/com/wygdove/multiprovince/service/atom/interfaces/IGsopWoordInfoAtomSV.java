@@ -1,19 +1,21 @@
 package com.wygdove.multiprovince.service.atom.interfaces;
 
-import com.wygdove.multiprovince.dao.bo.GsopWoOrdInfo;
+import com.github.pagehelper.PageInfo;
+import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoQueryRequest;
+import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoSaveRequest;
+import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoVO;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Title: IGsopWoordInfoAtomSV
  * @Description:
  */
 public interface IGsopWoordInfoAtomSV {
-    int add(GsopWoOrdInfo request);
-    int update(GsopWoOrdInfo request);
-    GsopWoOrdInfo queryById(GsopWoOrdInfo request);
-    List<GsopWoOrdInfo> queryList(GsopWoOrdInfo request);
-    List<GsopWoOrdInfo> queryList(GsopWoOrdInfo request,Map<String,Object> reqmap);
-    int count(GsopWoOrdInfo request);
-    int count(GsopWoOrdInfo request,Map<String,Object> reqmap);
+    int add(GsopWoordInfoSaveRequest request);
+    int update(GsopWoordInfoSaveRequest request);
+    GsopWoordInfoVO queryById(GsopWoordInfoQueryRequest request);
+    List<GsopWoordInfoVO> queryList(GsopWoordInfoQueryRequest request);
+    PageInfo<GsopWoordInfoVO> queryPage(GsopWoordInfoQueryRequest request);
+    int count(GsopWoordInfoQueryRequest request);
 }
+

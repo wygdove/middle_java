@@ -1,11 +1,10 @@
-package com.wygdove.multiprovince.service.atom.impl;
+package com.wygdove.multiprovince.service.atom.impl.xinjiang;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wygdove.multiprovince.dao.bo.common.DimAreaGrid;
-import com.wygdove.multiprovince.dao.mapper.common.DimAreaGridMapper;
+import com.wygdove.multiprovince.constants.ProvinceConstants;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridQueryRequest;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridSaveRequest;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridVO;
@@ -16,27 +15,31 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+
+import com.wygdove.multiprovince.dao.bo.xinjiang.DimAreaGrid;
+import com.wygdove.multiprovince.dao.mapper.xinjiang.DimAreaGridMapper;
+
 /**
- * @Title: DimAreaGridAtomSVImpl
+ * @Title: DimAreaGridAtomSVXinjiangImpl
  * @Description:
  */
 @Repository
-@ConditionalOnMissingBean(value=IDimAreaGridAtomSV.class,ignored=DimAreaGridAtomSVImpl.class)
-public class DimAreaGridAtomSVImpl implements IDimAreaGridAtomSV {
-    private static Logger log=LoggerFactory.getLogger(DimAreaGridAtomSVImpl.class);
-    
+@ConditionalOnProperty(name=ProvinceConstants.PROVINCE,havingValue=ProvinceConstants.XINJIANG)
+public class DimAreaGridAtomSVXinjiangImpl implements IDimAreaGridAtomSV {
+    private static Logger log=LoggerFactory.getLogger(DimAreaGridAtomSVXinjiangImpl.class);
+
     @Resource
     private DimAreaGridMapper dimAreaGridMapper;
 
 
     @Override
     public int add(DimAreaGridSaveRequest request) {
-        log.debug("DimAreaGridAtomSVImpl.add");
+        log.debug("DimAreaGridAtomSVXinjiangImpl.add");
         DimAreaGrid dimAreaGridRequest=new DimAreaGrid();
         BeanUtils.copyProperties(request,dimAreaGridRequest);
         return dimAreaGridMapper.insert(dimAreaGridRequest);
@@ -44,7 +47,7 @@ public class DimAreaGridAtomSVImpl implements IDimAreaGridAtomSV {
 
     @Override
     public int update(DimAreaGridSaveRequest request) {
-        log.debug("DimAreaGridAtomSVImpl.update");
+        log.debug("DimAreaGridAtomSVXinjiangImpl.update");
         DimAreaGrid dimAreaGridRequest=new DimAreaGrid();
         BeanUtils.copyProperties(request,dimAreaGridRequest);
         QueryWrapper<DimAreaGrid> updateWrapper=new QueryWrapper<>();
@@ -54,7 +57,7 @@ public class DimAreaGridAtomSVImpl implements IDimAreaGridAtomSV {
 
     @Override
     public DimAreaGridVO queryById(DimAreaGridQueryRequest request) {
-        log.debug("DimAreaGridAtomSVImpl.queryById");
+        log.debug("DimAreaGridAtomSVXinjiangImpl.queryById");
         DimAreaGrid dimAreaGrid=dimAreaGridMapper.selectById(request.getAreaId());
         DimAreaGridVO result=new DimAreaGridVO();
         BeanUtils.copyProperties(dimAreaGrid,result);
@@ -63,7 +66,7 @@ public class DimAreaGridAtomSVImpl implements IDimAreaGridAtomSV {
 
     @Override
     public List<DimAreaGridVO> queryList(DimAreaGridQueryRequest request) {
-        log.debug("DimAreaGridAtomSVImpl.queryList");
+        log.debug("DimAreaGridAtomSVXinjiangImpl.queryList");
         List<DimAreaGridVO> result=new ArrayList<>();
         QueryWrapper<DimAreaGrid> queryWrapper=this.getQueryWrapper(request);
         List<DimAreaGrid> resList=dimAreaGridMapper.selectList(queryWrapper);
@@ -80,7 +83,7 @@ public class DimAreaGridAtomSVImpl implements IDimAreaGridAtomSV {
 
     @Override
     public PageInfo<DimAreaGridVO> queryPage(DimAreaGridQueryRequest request) {
-        log.debug("DimAreaGridAtomSVImpl.queryPage");
+        log.debug("DimAreaGridAtomSVXinjiangImpl.queryPage");
         PageInfo<DimAreaGridVO> pageResult=new PageInfo<>();
         List<DimAreaGridVO> result=new ArrayList<>();
 
@@ -109,7 +112,7 @@ public class DimAreaGridAtomSVImpl implements IDimAreaGridAtomSV {
 
     @Override
     public int count(DimAreaGridQueryRequest request) {
-        log.debug("DimAreaGridAtomSVImpl.count");
+        log.debug("DimAreaGridAtomSVXinjiangImpl.count");
         QueryWrapper<DimAreaGrid> queryWrapper=this.getQueryWrapper(request);
         return dimAreaGridMapper.selectCount(queryWrapper);
     }

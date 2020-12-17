@@ -1,4 +1,4 @@
-package com.wygdove.multiprovince.dao.bo;
+package com.wygdove.multiprovince.dao.bo.common;
 
 
 /**

@@ -6,10 +6,8 @@ import com.wygdove.multiprovince.constants.ProvinceConstants;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoQueryRequest;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoSaveRequest;
 import com.wygdove.multiprovince.model.gsopwoordinfo.GsopWoordInfoVO;
-import com.wygdove.multiprovince.service.atom.interfaces.IGsopWoordInfoAtomSV;
 import com.wygdove.multiprovince.service.busi.interfaces.IGsopWoordInfoBusiSV;
 import java.util.List;
-import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -24,9 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ConditionalOnProperty(name=ProvinceConstants.PROVINCE,havingValue=ProvinceConstants.XINJIANG)
 public class GsopWoordInfoBusiSVXinjiangImpl implements IGsopWoordInfoBusiSV {
     private static Logger log=LoggerFactory.getLogger(GsopWoordInfoBusiSVXinjiangImpl.class);
-
-    @Resource
-    private IGsopWoordInfoAtomSV gsopWoordInfoAtomSV;
 
 
     @Transactional

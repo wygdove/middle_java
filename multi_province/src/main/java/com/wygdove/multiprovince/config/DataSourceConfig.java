@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
  * @Description:
  */
 @Configuration
-@MapperScan(basePackages="com.wygdove.multiprovince.dao.mapper",sqlSessionTemplateRef="sqlSessionTemplate")
+@MapperScan(basePackages="com.wygdove.multiprovince.dao.mapper.*",sqlSessionTemplateRef="sqlSessionTemplate")
 public class DataSourceConfig {
 
     @Bean(name="sqlSessionFactory")

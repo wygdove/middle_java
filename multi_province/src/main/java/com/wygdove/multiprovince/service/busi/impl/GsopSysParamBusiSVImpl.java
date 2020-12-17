@@ -1,30 +1,20 @@
 package com.wygdove.multiprovince.service.busi.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wygdove.multiprovince.constants.CommonConstants;
-import com.wygdove.multiprovince.dao.bo.GsopGridSysParam;
 import com.wygdove.multiprovince.model.gsopsysparam.GsopSysParamQueryRequest;
 import com.wygdove.multiprovince.model.gsopsysparam.GsopSysParamSaveRequest;
 import com.wygdove.multiprovince.model.gsopsysparam.GsopSysParamVO;
 import com.wygdove.multiprovince.service.atom.interfaces.IGsopSysParamAtomSV;
 import com.wygdove.multiprovince.service.busi.interfaces.IGsopSysParamBusiSV;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * @Title: GsopSysParamBusiSVImpl
@@ -43,11 +33,9 @@ public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     @Override
     public String addGsopSysParam(GsopSysParamSaveRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.addGsopSysParam request: {}",JSON.toJSONString(request));
-//        Long itemId=seqUtil.getNextLongValue(SequencesConstant.ASSETS_STOCK_SEQ_ID);
+//        Long itemId=SeqUtil.getNextLongValue(SequencesConstant.ID);
 //        request.setId(itemId);
-        GsopGridSysParam gsopSysParamRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,gsopSysParamRequest);
-        int res=gsopSysParamAtomSV.add(gsopSysParamRequest);
+        int res=gsopSysParamAtomSV.add(request);
         String result=Integer.toString(res);
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.addGsopSysParam result: {}",JSON.toJSONString(result));
         return result;
@@ -57,12 +45,10 @@ public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     @Override
     public String updateGsopSysParam(GsopSysParamSaveRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.updateGsopSysParam request: {}",JSON.toJSONString(request));
-//        if(Objects.isNull(request)||Objects.isNull(request.getGuidkey())||request.getGuidkey()<=0) {
+//        if(Objects.isNull(request)||Objects.isNull(request.getId())||request.getId()<=0) {
 //            return CommonConstants.STR_0;
 //        }
-        GsopGridSysParam gsopSysParamRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,gsopSysParamRequest);
-        int res=gsopSysParamAtomSV.update(gsopSysParamRequest);
+        int res=gsopSysParamAtomSV.update(request);
         String result=Integer.toString(res);
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.updateGsopSysParam response: {}",JSON.toJSONString(result));
         return result;
@@ -71,12 +57,10 @@ public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     @Override
     public String deleteGsopSysParam(GsopSysParamSaveRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.deleteGsopSysParam request: {}",JSON.toJSONString(request));
-//        if(Objects.isNull(request)||Objects.isNull(request.getGuidkey())||request.getGuidkey()<=0) {
+//        if(Objects.isNull(request)||Objects.isNull(request.getId())||request.getId()<=0) {
 //            return CommonConstants.STR_0;
 //        }
-        GsopGridSysParam gsopSysParamRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,gsopSysParamRequest);
-        int res=gsopSysParamAtomSV.update(gsopSysParamRequest);
+        int res=gsopSysParamAtomSV.update(request);
         String result=Integer.toString(res);
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.deleteGsopSysParam result: {}",JSON.toJSONString(result));
         return result;
@@ -86,21 +70,14 @@ public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     public GsopSysParamVO queryDetailGsopSysParam(GsopSysParamQueryRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryDetailGsopSysParam request: {}",JSON.toJSONString(request));
         GsopSysParamVO result=null;
-        GsopGridSysParam gsopSysParamRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,gsopSysParamRequest);
-        GsopGridSysParam gsopSysParam=null;
-        if(StringUtils.hasText(request.getGuidkey())) {
-            gsopSysParam=gsopSysParamAtomSV.queryById(gsopSysParamRequest);
-        }else {
-            List<GsopGridSysParam> gsopSysParamList=gsopSysParamAtomSV.queryList(gsopSysParamRequest);
-            if(!CollectionUtils.isEmpty(gsopSysParamList)) {
-                gsopSysParam=gsopSysParamList.get(0);
+//        if(!Objects.isNull(request.getId())&&request.getId()>0) {
+//            result=gsopSysParamAtomSV.queryById(request);
+//        }else {
+            List<GsopSysParamVO> gsopSysParamVOList=gsopSysParamAtomSV.queryList(request);
+            if(!CollectionUtils.isEmpty(gsopSysParamVOList)) {
+                result=gsopSysParamVOList.get(0);
             }
-        }
-        if(!Objects.isNull(gsopSysParam)) {
-            result=new GsopSysParamVO();
-            BeanUtils.copyProperties(gsopSysParam,result);
-        }
+//        }
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryDetailGsopSysParam result: {}",JSON.toJSONString(result));
         return result;
     }
@@ -108,19 +85,7 @@ public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     @Override
     public List<GsopSysParamVO> queryListGsopSysParam(GsopSysParamQueryRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryListGsopSysParam request: {}",JSON.toJSONString(request));
-        List<GsopSysParamVO> result=new ArrayList<>();
-        GsopGridSysParam queryRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,queryRequest);
-        Map<String,Object> reqmap=this.setAtomQueryMap(request);
-        List<GsopGridSysParam> resList=gsopSysParamAtomSV.queryList(queryRequest,reqmap);
-        if(!CollectionUtils.isEmpty(resList)) {
-            GsopSysParamVO itemVo=null;
-            for(GsopGridSysParam item:resList) {
-                itemVo=new GsopSysParamVO();
-                BeanUtils.copyProperties(item,itemVo);
-                result.add(itemVo);
-            }
-        }
+        List<GsopSysParamVO> result=gsopSysParamAtomSV.queryList(request);
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryListGsopSysParam result: {}",JSON.toJSONString(result));
         return result;
     }
@@ -128,60 +93,21 @@ public class GsopSysParamBusiSVImpl implements IGsopSysParamBusiSV {
     @Override
     public PageInfo<GsopSysParamVO> queryPageGsopSysParam(GsopSysParamQueryRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryPageGsopSysParam request: {}",JSON.toJSONString(request));
-        PageInfo<GsopSysParamVO> pageResult=new PageInfo<>();
-        List<GsopSysParamVO> result=new ArrayList<>();
-
-        GsopGridSysParam queryRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,queryRequest);
-        Map<String,Object> reqmap=this.setAtomQueryMap(request);
-
-        List<GsopGridSysParam> resList;
-        Page<GsopGridSysParam> pageData;
-        PageHelper.startPage(request.getPageNo(),request.getPageSize());
-        try {
-            resList=gsopSysParamAtomSV.queryList(queryRequest,reqmap);
-            pageData=(Page<GsopGridSysParam>)resList;
-        }finally {
-            PageHelper.clearPage();
+        if(request.getPageNo()==null||request.getPageSize()==null||request.getPageNo()<=0||request.getPageSize()<=0) {
+            return new PageInfo<>();
         }
-        if(!CollectionUtils.isEmpty(resList)) {
-            GsopSysParamVO itemVo=null;
-            for(GsopGridSysParam item:resList) {
-                itemVo=new GsopSysParamVO();
-                BeanUtils.copyProperties(item,itemVo);
-                result.add(itemVo);
-            }
-            BeanUtils.copyProperties(pageData,pageResult);
-        }
-        pageResult.setList(result);
-
-        if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryPageGsopSysParam result: {}",JSON.toJSONString(result));
+        PageInfo<GsopSysParamVO> pageResult=gsopSysParamAtomSV.queryPage(request);
+        if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.queryPageGsopSysParam result: {}",JSON.toJSONString(pageResult));
         return pageResult;
     }
 
     @Override
     public Integer countGsopSysParam(GsopSysParamQueryRequest request) {
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.countGsopSysParam request: {}",JSON.toJSONString(request));
-        GsopGridSysParam queryRequest=new GsopGridSysParam();
-        BeanUtils.copyProperties(request,queryRequest);
-        Map<String,Object> reqmap=this.setAtomQueryMap(request);
-        int result=gsopSysParamAtomSV.count(queryRequest,reqmap);
+        int result=gsopSysParamAtomSV.count(request);
         if(log.isDebugEnabled()) log.debug("GsopSysParamBusiSVImpl.countGsopSysParam result: {}",JSON.toJSONString(result));
         return result;
     }
 
 
-    private Map<String,Object> setAtomQueryMap(GsopSysParamQueryRequest src) {
-        Map<String,Object> res=new HashMap<>();
-        if(src==null) return res;
-//        if(StringUtils.hasText(src.getFieldLike())) {
-//            res.put("fieldLike",src.getFieldLike());
-//        }
-//        if(!CollectionUtils.isEmpty(src.getFieldIn())) {
-//            res.put("fieldIn",src.getFieldIn());
-//        }
-        return res;
-    }
-    
-    
 }
