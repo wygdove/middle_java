@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wygdove.multiprovince.dao.bo.common.DimAreaGrid;
-import com.wygdove.multiprovince.dao.mapper.common.DimAreaGridMapper;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridQueryRequest;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridSaveRequest;
 import com.wygdove.multiprovince.model.dimareagrid.DimAreaGridVO;
@@ -20,6 +18,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import com.wygdove.multiprovince.dao.bo.common.DimAreaGrid;
+import com.wygdove.multiprovince.dao.mapper.common.DimAreaGridMapper;
 
 /**
  * @Title: DimAreaGridAtomSVImpl
