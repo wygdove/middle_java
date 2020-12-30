@@ -28,10 +28,6 @@ public class PrintAZThreadOrder {
             synchronized(object) {
                 String threadName=Thread.currentThread().getName();
                 while(cnt<27) {
-
-
-
-
                     if(Integer.parseInt(threadName)==(cnt%3)) {
                         if(cnt>=26) {
                             print(threadName+"==ok");
