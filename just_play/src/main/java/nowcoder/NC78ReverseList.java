@@ -1,4 +1,4 @@
-package nocoder;
+package nowcoder;
 
 /**
  * @Title: NC78_ReverseList
