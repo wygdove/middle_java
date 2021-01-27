@@ -12,7 +12,7 @@ public class AjaxResult {
     private String info;
 
 
-    public static class AjaxStatus {
+    public static final class AjaxStatus {
         public static final Integer SUCCESS=0;
         public static final Integer ERROR=1;
         public static final Integer NOLOGIN=2;
