@@ -96,6 +96,39 @@ public class ConfigCenter {
     }
 
 
+    public Stat update(String path,String data) {
+        log.info("ConfigCenter.update request {}={}",path,data);
+        Stat result=null;
+        if(zooKeeper==null) {
+            return result;
+        }
+        try {
+            result=zooKeeper.setData(path,data.getBytes(),-1);
+        }catch(Exception e) {
+            result=null;
+            log.error("ConfigCenter.update error: {}",e.getMessage(),e);
+        }
+        return result;
+    }
+
+
+    public String delete(String path) {
+        log.info("ConfigCenter.get request: {}",path);
+        String result=null;
+        if(zooKeeper==null) {
+            return result;
+        }
+        try {
+            zooKeeper.delete(path,-1);
+            result="ok";
+        }catch(Exception e) {
+            result=null;
+            log.error("ConfigCenter.update error: {}",e.getMessage(),e);
+        }
+        return result;
+    }
+
+
 
 
 }

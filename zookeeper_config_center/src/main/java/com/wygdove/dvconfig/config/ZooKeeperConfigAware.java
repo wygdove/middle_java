@@ -9,7 +9,8 @@ import org.springframework.core.env.Environment;
  * @Description:
  */
 @Configuration
-public class ZooKeeperConfigAware  implements EnvironmentAware {
+public class ZooKeeperConfigAware implements EnvironmentAware {
+
     private Environment environment;
 
     @Override

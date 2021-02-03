@@ -6,7 +6,8 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    <root level="debug">
+    <logger name="com.wygdove" level="DEBUG" />
+    <root level="ERROR">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
