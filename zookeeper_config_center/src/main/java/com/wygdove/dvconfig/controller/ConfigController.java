@@ -1,8 +1,8 @@
 package com.wygdove.dvconfig.controller;
 
-import com.wygdove.dvconfig.config.ConfigCenter;
 import com.wygdove.dvconfig.constants.DvConfigConstants;
 import com.wygdove.dvconfig.model.common.AjaxResult;
+import com.wygdove.dvconfig.service.interfaces.IConfigCenter;
 import com.wygdove.dvconfig.utils.AjaxUtil;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ public class ConfigController {
     private static final Logger log=LoggerFactory.getLogger(ConfigController.class);
 
     @Resource
-    private ConfigCenter configCenter;
+    private IConfigCenter configCenter;
 
 
     @RequestMapping("createConfig")
