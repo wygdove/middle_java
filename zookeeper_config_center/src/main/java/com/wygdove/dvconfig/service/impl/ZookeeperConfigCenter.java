@@ -125,6 +125,9 @@ public class ZookeeperConfigCenter implements IConfigCenter {
         };
         try {
             byte[] dataBytes=zooKeeper.getData(path,dataWatcher,stat);
+            if(log.isInfoEnabled()) {
+                log.info("ZookeeperConfigCenter.get data stat: {}",JSON.toJSONString(stat));
+            }
             result=new String(dataBytes);
         }catch(Exception e) {
             log.error("ZookeeperConfigCenter.get error -- getData: {}",e.getMessage(),e);

@@ -26,4 +26,8 @@ public class ZooKeeperConfigAware implements EnvironmentAware {
         return environment.getProperty("zookeeper.timeout",Integer.class);
     }
 
+    public int getZooKeeperMaxRetries() {
+        return environment.getProperty("zookeeper.max-retries",Integer.class);
+    }
+
 }
